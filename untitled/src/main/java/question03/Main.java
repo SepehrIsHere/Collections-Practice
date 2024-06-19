@@ -4,52 +4,26 @@ import java.util.ArrayList;
 
 
 public class Main {
-    public ArrayList<Integer> removeInappropriatePairs(ArrayList<Integer> numbers) {
-        if (numbers == null) {
-            throw new IllegalArgumentException("Input list cannot be null.");
-        }
+   public static void removeUnsuitablePairs(ArrayList<Integer> list){
+      for(int i = 0; i < list.size() - 1; i += 2){
+         if(list.get(i) > list.get(i + 1)){
+            list.remove(i);
+            list.remove(i);
+            i -= 2;
+         }
+      }
+      if(list.size() % 2 != 0){
+         list.remove(list.size() -1);
+      }
+   }
+   public static void main(String[] args) {
+      ArrayList<Integer> list = new ArrayList<>();
+      list.add(1); list.add(3); list.add(7); list.add(4); list.add(3); list.add(6);
+      list.add(5); list.add(8); list.add(5); list.add(5); list.add(2);
+      list.add(7); list.add(3);
 
-        if (numbers.isEmpty()) {
-            return numbers;
-        }
-
-        boolean isLengthOdd = numbers.size() % 2 != 0;
-        int limit = isLengthOdd ? numbers.size() - 1 : numbers.size();
-
-        for (int i = 0; i < limit; i += 2) {
-            if (numbers.get(i) > numbers.get(i + 1)) {
-                numbers.remove(i + 1);
-                numbers.remove(i);
-                i -= 2;
-                if (i < -2) i = -2;
-                limit -= 2;
-            }
-        }
-
-        if (isLengthOdd) {
-            numbers.remove(numbers.size() - 1);
-        }
-
-        return numbers;
-    }
-
-    public static void main(String[] args) {
-        Main main = new Main();
-        ArrayList<Integer> numbers = new ArrayList<>();
-        numbers.add(1);
-        numbers.add(3);
-        numbers.add(7);
-        numbers.add(4);
-        numbers.add(3);
-        numbers.add(6);
-        numbers.add(5);
-        numbers.add(8);
-        numbers.add(5);
-        numbers.add(5);
-        numbers.add(2);
-        numbers.add(9);
-        numbers.add(7);
-        numbers.add(3);
-        System.out.println(main.removeInappropriatePairs(numbers));
-    }
+      System.out.println("Original List: " + list);
+      removeUnsuitablePairs(list);
+      System.out.println("Modified List: " + list);
+   }
 }
