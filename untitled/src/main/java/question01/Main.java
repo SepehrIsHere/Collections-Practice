@@ -2,6 +2,7 @@ package question01;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Scanner;
 
 public class Main {
     public static void generatePermutations(String str){
@@ -46,13 +47,18 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        System.out.println("Permutations of CAT:");
-        generatePermutations("CAT");
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter the first word : ");
+        String word = input.next();
+        System.out.println("Enter the second word : ");
+        String secondWord = input.next();
+        System.out.println("Permutations of " + word + " :");
+        generatePermutations(word);
+        System.out.println("Permutations of " + secondWord + " :");
+        generatePermutations(secondWord);
 
-        System.out.println("Checking if CAT and ACT are anagrams:");
-        areAnagrams("CAT", "ACT");
+        System.out.println("Checking if " + word + " and " + secondWord + " are anagrams:");
+        areAnagrams(word, secondWord);
 
-        System.out.println("Checking if CAT and DOG are anagrams:");
-        areAnagrams("CAT", "DOG");
     }
 }
